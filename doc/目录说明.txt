@@ -1,0 +1,31 @@
+.
+├── doc               ---->存放项目的一些文档（主要项目的注意事项，以及发布时的一些注意）
+├── Public
+│   ├── css           ---->存放CSS文件
+│   ├── img           ---->存放IMG文件
+│   └── js            ---->存放js文件
+├── ThinkPHP          ---->存放项目框架文件（ThinkPHP框架目录)
+└── Wyapp             ---->项目应用文件   
+    ├── Admin         ---->后台（管理）目录
+    │   ├── Common
+    │   ├── Conf
+    │   ├── Controller
+    │   ├── Model
+    │   └── View
+    ├── Common
+    │   ├── Common
+    │   └── Conf
+    ├── Home         ------>前台目录
+    │   ├── Common
+    │   ├── Conf
+    │   ├── Controller
+    │   ├── Model
+    │   └── View
+    └── Runtime       ----->运行产生的目录（日志，缓存，数据库缓存）
+    |    ├── Cache
+    |    │   └── Home
+    |    ├── Data
+    |    ├── Logs
+    |    └── Temp
+	|____User         --------->用户接口目录
+84 directories
