@@ -41,7 +41,7 @@ return array(
 					'__JS__' 	=> __ROOT__.'Public/js/',
 					'__IMG__'	=>__ROOT__.'Public/img/',
 					'__CSS__'	=>__ROOT__.'Public/css/'
-					)
+					),
 
 
 
@@ -56,7 +56,46 @@ return array(
 			/* URL设置 */
 			'URL_CASE_INSENSITIVE'  =>  true,   // 默认false 表示URL区分大小写 true则表示不区分大小写
 
-			'URL_MODEL'				=>	2       //采用重写机制
+			'URL_MODEL'				=>	2  ,     //采用重写机制
+
+
+
+			/***邮件配置***/
+			'EMAIL_SETTING'=>array(
+				
+					//stmp debug
+					'STMPDebug'=>2,//0 = off(for production use) 1 = client messages 2 = client and server message
+					
+					'Debugoutput'=>'html',
+	
+					//hostname of email server
+					'Host'=>'imap.qq.com',
+
+					//port number 
+					'Port'=>143,
+
+					'SMTPAuth'=>true,
+
+					//send username
+					'Username'=>'1150665265@qq.com',
+
+					//send username password
+					'Password'=>'nebs1992fmxWJ',
+
+					//from who email
+					'From_account'=>'发送者帐号',
+
+					//from who name 
+					'From_name'=>'发送者',
+
+					
+					//回复给谁
+					'Reply_account'=>'回复接受邮件帐号'，
+
+					//回复 接受者姓名
+					'Reply_name'=>'回复接受者的姓名'
+					
+			)
 
 
 

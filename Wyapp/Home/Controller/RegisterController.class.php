@@ -6,6 +6,7 @@ use User\Api\UserApi;
 class RegisterController extends HomeController{
 
 	private $Api=null; 
+
 	//构造函数
 	public function _initialize(){
 	
