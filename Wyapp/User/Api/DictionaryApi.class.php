@@ -1,6 +1,6 @@
 <?php
 /*=================================字典API=============================*/
-//主要用于更新数据库字典和数据库字典快速查询
+//主要用于更新数据库字典和数据库字典快速查询  不分大小写输入
 
 
 namespace User\Api;
@@ -44,6 +44,9 @@ class DictionaryApi extends Api{
 				//转化称拼音首字母
 				$temp_str=$this->pin_yin_api->pinyin_long($one[$ffield]);
 
+				// 转换成小写字母
+				$temp_str=strtolower($temp_str);
+
 				$flag=$this->model->table($table)->where([$id]."=%d",$one[$id])->setField($tfield,$temp_str);
 
 				if($flag){
@@ -69,6 +72,7 @@ class DictionaryApi extends Api{
 	//return array 二维数组
 	public function PinYinSelect($table,$field,$search_str){
 
+		$search_str=strtolower($search_str);
 		$result=$this->model->table($table)->where($field." LIKE ",'%'.$search_str.'%')->select();
 
 		if(is_array($result) && count($result)){
