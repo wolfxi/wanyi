@@ -29,7 +29,25 @@ function get_user_info(){
 }	
 
 
+//货物用户单个字段信息  根据ID来获取
+//@param $field 要获取的字段
+//@type 模式 boolean 为true时，从数据库获取，并更新session 
+function get_user_field($field,$type=false){
+	if(is_login()){
 
+		$user_info=get_user_info();
+		if($type){
+			$model=M('user');
+			$result=$model->where("u_id='%s'",$user_info['u_id'])->find();
+			$result['u_password']=null;
+			session('USER_INFO',$result);
+		}
+		return $user_info[$field];
+	}else{
+		return false;
+	}
+
+}
 
 
 

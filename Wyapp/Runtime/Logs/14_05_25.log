@@ -1,0 +1,8 @@
+[ 2014-05-25T00:39:27+08:00 ] 127.0.0.1 /wy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000447s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.008475s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008605s ]
+

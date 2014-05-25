@@ -9,14 +9,44 @@ class RegisterController extends HomeController{
 
 	//构造函数
 	public function _initialize(){
-	
-
-			$Api=new UserApi();
+		$Api=new UserApi();
 	} 
+
+	//登录UI
+	public function loginUi(){
+		$this->display();
+	}
+
+	//登录操作
+	public function login(){
+		if(IS_AJAX){	
+			$name=I('post.name');
+			$password=I('post.password');
+			$verify=I('post.verify');
+			if(empty(trim($name)) || empty(trim($password))|| empty(trim($verify)) ){
+				$result['flag']= false;
+				$result['msg']="请填写用户名和密码";
+			}else{
+				$flag=$this->Api->login($password,$name);	
+				if($flag){
+					$result['flag']=true;
+					$result['msg']='OK';
+				}else{
+					$result['flag']=false;
+					$result['msg']='用户名或密码错误';
+				}
+			}
+
+			$this->ajaxReturn($result);
+		}else{
+			die();
+		}
+	}
+
 
 	//注册UI
 	public function index(){
-	
+
 		$this->display();
 	}
 
@@ -24,35 +54,35 @@ class RegisterController extends HomeController{
 
 	//注册操作 
 	public function register(){
-	
-	
+
+
 	}
-	
+
 
 
 
 	//找回秘密UI 
 	public function forgetPasswordUi(){
-	
+
 		$this->display();
-	
+
 	}
 
 
 
 	//找回秘密操作
 	public function forgetPassword(){
-	
 
-	
+
+
 	}
 
 	//注册激活操作
 	public function activation(){
-	
+
 	}
 
-	
+
 	//ajax 用户email是否可用
 	public function	emailIsable(){
 		$email=I('post.email');
@@ -64,9 +94,9 @@ class RegisterController extends HomeController{
 			}else{
 				$result['flag']=false;
 				if(is_email($email)){
-				$result['msg']='邮箱已经被注册!!!';
+					$result['msg']='邮箱已经被注册!!!';
 				}else{
-				$result['msg']='邮箱格式错误!!!';
+					$result['msg']='邮箱格式错误!!!';
 				}
 			}
 

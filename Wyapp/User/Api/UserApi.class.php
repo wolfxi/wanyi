@@ -7,7 +7,7 @@
 
 namespace User\Api;
 use User\Api\Api;
-
+use User\Api\SendemailApi;
 
 
 class UserApi extends Api{
@@ -34,8 +34,29 @@ class UserApi extends Api{
 	//成功：ture  失败：false
 	//支持email 和帐号登录
 	public function login($password,$account=null,$email=null){
+		$result=false;
+		if(is_null($email)){
+			//帐号登录
+			$result=$this->model->where("u_account='%s' AND u_password='%s'",$account,md5($password))->find();
+		}else{
+			//邮箱登录
+			$result=$this->model->where("u_email='%s' AND u_password='%s'",$email,md5($password))->find();
+		}
+		if(is_array($return) && md5($password)===$result['u_password']){
+			$result['u_password']=null;
+			session('USER_INFO',$result);
+			//更新用户信息
+			$data['u_login_times']=$result['u_login_times']+1;
+			if($this->model->where('u_id=%d',$result['u_id'])->data($data)->save()){
+				return true;
+			}else{
+				return false;
+			}
 
-		//TODO:: 
+		}else{
+			return false;
+		}
+
 
 
 	} 
@@ -47,12 +68,22 @@ class UserApi extends Api{
 	//@param email <用户邮箱>
 	//@param content <发送的内容>
 	//支持用户注册激活，邮箱找回密码
-	public function sendEmail($email,$content){
+	public function sendEmail($email,$content,$name,$subject){
+		if(is_email($email)){
+			$email_api=new SendemailApi();
+			$send['aname']=$name;
+			$send['aaccount']=$email;
+			$send['subject']=$subject;
+			$send['body']=$content;
+			if($email_api->send($send)){
+				return true;
 
-		return true;
-
-		return false;
-
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
 	}
 
 
@@ -107,6 +138,24 @@ class UserApi extends Api{
 	}
 
 
+	/*跟新用户信息  单个字段更新
+	  @param $field :字段名
+	  @param $value :值
+	  return boolean true /flase
+	 */
+	public function updateOneFiels($field,$value){
+
+		$valuetype="%s";
+		if(is_int($value)){
+			$valuetype="%d";
+		}
+		$flag=$this->model->where("u_id=%d",get_user_field('u_id'))->data(array($field=>$value))->save();
+		if($flag){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 
 

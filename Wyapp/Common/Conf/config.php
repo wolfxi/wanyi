@@ -1,7 +1,7 @@
 <?php
 return array(
 		//'配置项'=>'配置值'
-	
+
 
 
 
@@ -31,7 +31,7 @@ return array(
 		'TAGLIB_END'            =>  '%>',  // 标签库标签结束标记
 
 		'TMPL_L_DELIM'          =>  '<{',            // 模板引擎普通标签开始标记
-			'TMPL_R_DELIM'          =>  '}>',            // 模板引擎普通标签结束标记
+		'TMPL_R_DELIM'          =>  '}>',            // 模板引擎普通标签结束标记
 
 
 
@@ -62,12 +62,12 @@ return array(
 
 			/***邮件配置***/
 			'EMAIL_SETTING'=>array(
-				
+
 					//stmp debug
 					'STMPDebug'=>2,//0 = off(for production use) 1 = client messages 2 = client and server message
-					
+
 					'Debugoutput'=>'html',
-	
+
 					//hostname of email server
 					'Host'=>'imap.qq.com',
 
@@ -88,16 +88,16 @@ return array(
 					//from who name 
 					'From_name'=>'发送者',
 
-					
+
 					//回复给谁
-					'Reply_account'=>'回复接受邮件帐号'，
+					'Reply_account'=>'回复接受邮件帐号',
 
 					//回复 接受者姓名
 					'Reply_name'=>'回复接受者的姓名'
-					
-			)
+
+					)
 
 
 
 
-			);
+		);
