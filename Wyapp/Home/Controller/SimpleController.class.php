@@ -8,6 +8,11 @@ use Think\Controller;
 class SimpleController extends HomeController{
 
 
+	public function _initialize(){
+	
+		parent::_initialize();
+	
+	}
 
 
 

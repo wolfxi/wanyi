@@ -7,7 +7,7 @@ class DiseaseController extends HomeController{
 
 	public function _initialize(){
 	
-		parent:_initialize();
+		parent::_initialize();
 	
 	}
 

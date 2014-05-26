@@ -10,6 +10,8 @@ class RegisterController extends HomeController{
 	//构造函数
 	public function _initialize(){
 		$Api=new UserApi();
+
+		parent::_initialize();
 	} 
 
 	//登录UI
@@ -55,7 +57,47 @@ class RegisterController extends HomeController{
 	//注册操作 
 	public function register(){
 
+		if(IS_AJAX){
+			$nickname=I('post.nickname');
+			$email=I('post.email');
+			$password1=I('post.password1');
+			$password2=I('post.password2');
+			$verify=I('post.verify');
+			if(empty($nickname) || empty($email) || empty($password1) || empty($password2) || empty(verify)){
+				$result['flag']=false;
+				$result['msg']='请填写相关信息'];
+				$this->ajaxReturn($result);
+			}else{
 
+				//检测邮件是否合格和是否被注册
+				if(!$this->Api->checkEmail($email)){
+					$result['flag']=false;
+					$resut['msg']='邮箱已被注册或邮箱格式不正确';
+					$this->ajaxReturn($result);
+				
+				}
+				if($password1===$password2){
+				
+					if($this->Api->register($nickname,$passwprd1,$email){
+						//TODO::跳到相应的界面
+						
+					}else{
+					$result['flag']=false;
+					$result['msg']='注册失败！！，请稍后在试！！'];
+					$this->ajaxReturn($result);
+					
+					}
+				}else{
+					$result['flag']=false;
+					$result['msg']='密码不一致！！'];
+					$this->ajaxReturn($result);
+				}
+			}
+
+		}else{
+
+			die();
+		}
 	}
 
 
@@ -146,7 +188,7 @@ class RegisterController extends HomeController{
 	} 
 
 
-	//验证码，用户登录和注册
+	//验证码，登录和注册
 	public function createVerify(){
 		$verify=new \Think\Verify();
 		$verify->legth=4;

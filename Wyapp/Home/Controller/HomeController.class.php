@@ -37,12 +37,15 @@ class HomeController extends Controller{
 	protected function filterInput($input){
 		if(is_array($input) && count($input)>0){
 			foreach($input as $key => $one){
-				$input[$key]=self::fileterVar($one);
-
+				if(is_array($one)){
+					foreach($one as $one_one){
+						$input[$key]=self::fileterVar($one_one);
+					}
+				}else{
+					$input[$key]=self::fileterVar($one);
+				}	
 			}
-
 		}else{
-
 			$input=self::fileterVar($input);
 		}
 		return $input;

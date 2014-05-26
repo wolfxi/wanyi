@@ -24,8 +24,31 @@ class UserApi extends Api{
 	//return boolean 
 	//成功：true   失败：false
 	public function register($nickname,$email,$password){
+		$data['u_email']=$email;
+		$data['u_account']=$email;
+		$data['u_password']=md5($password);
+		$data['u_nickname']=$nickname;
+		$UserModel=M('user');
+		//开启事物
+		$UserModel->startTrans();
+		$flag=$UserModel->data($data)->add();
+		if($flase){
+			//发送激活邮件
+			$subject="万医网站注册成功，激活邮件";
+			$content='点击一下内容激活你的帐号';
 
-		//TODO::
+			//:TODO：：	倒是后设置邮箱验证规则
+			$send=$this->sendEmail($email,$content,$nickname,$subject);
+			if($send){
+				$UserModel->commit();
+				return true;
+			}else{
+				$UserModel->rollback();
+				return false;
+			}
+		}else{
+			return false;
+		}
 	}
 
 
@@ -107,7 +130,7 @@ class UserApi extends Api{
 	}
 
 
-	//检测邮箱是否可
+	//检测邮箱是否可以注册
 	//return boolean
 	//邮箱存在false 不存在true
 	//@param email 用户邮箱
@@ -131,10 +154,10 @@ class UserApi extends Api{
 	//return boolean
 	//正确true 错误false
 	//@param code <验证吗>
-	public function checkVerify(){
+	public function checkVerify($verify){
+		$verify=new \Think\Verify();
+		return $verify->check($verify);
 
-
-		return false;
 	}
 
 
