@@ -19,7 +19,7 @@ var ajaxhelper={
 				datatype:'json',
 				success:function(message){
 					var flag=$(message).flag;
-					if(flag==true && typeof(callback_function)!='undefind'){
+					if(flag=='true' && typeof(callback_function)!='undefind'){
 						callback_function(message);
 						return false;
 					}else{
@@ -51,7 +51,7 @@ var ajaxhelper={
 
 					var flag=$.trim($(message).children("#flag").text());
 				
-					if(flag==true){
+					if(flag=='true'){
 					
 						if(typeof(callback_function)!='undefind'){
 						

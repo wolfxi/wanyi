@@ -73,15 +73,33 @@ class DictionaryApi extends Api{
 	public function PinYinSelect($table,$field,$search_str){
 
 		$search_str=strtolower($search_str);
-		$result=$this->model->table($table)->where($field." LIKE ",'%'.$search_str.'%')->select();
+		$result=$this->model->table($table)->where($field." LIKE '%s'",'%'.$search_str.'%')->select();
 
-		if(is_array($result) && count($result)){
+		if(is_array($result) && count($result)>0){
 			return $result;
 		}else{
 			return null;
 		}
 
 
+
+	}
+
+	//查询是否有该类型
+	//@param table :要查询的表名
+	//@param field : 根据哪个字段来获取数据
+	//@param search_str: 查询过滤的条件
+	//return boolean true/false
+	public function existSelect($table,$field,$search_str){
+	
+		$result=$this->model->table($table)->where($field." LIKE '%s'",'%'.$search_str.'%')->find();
+		if(is_array($result) && $result){
+		
+			return true;
+		}else{
+		
+			return false;
+		}
 
 	}
 
