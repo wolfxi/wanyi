@@ -177,11 +177,107 @@ class HealthyrecordController extends HomeController{
 	}
 
 
-	//TODO::并发症
+	//获取并发症界面HTML
+	//return html
+	public function getSideEffectDHtml(){
+
+		if(IS_AJAX && !empty(I('post.dname'))){
+			$this->assign('dname',I('post.dname'));
+			$this->assign('flag',true);
+
+			//根据提供的界面来判断
+			$this->display();
+
+		}else{
+			die();
+		}
 
 
 
+	}
 
+
+	//记录下并发症
+	//return json
+	public function getSideEffectD(){
+
+		if(IS_AJAX && !empty(I('post.dename')) && !empty(I('post.uniqid'))){
+			$temp_array=session(I('post.uniqid'));
+
+			$temp_array['dename']=I('post.dename');
+			session(I('post.uniqid'),$temp_array);
+			$result['flag']=true;
+			$result['msg']='OK';
+			$this->ajaxReturn($result);
+		}else{
+			die();	
+		}
+	}
+
+
+	//获取完成界面的按钮
+	//return html 
+	public function getDoneDHtml(){
+	
+		if(IS_AJAX){
+		
+			$this->assign('flag',true);
+			$this->display();
+		}else{
+		die();
+		}
+	
+	}
+
+
+
+	//点击完成按钮界面
+	//return json
+	public function	addDoneDisease(){
+		if(IS_AJAX && !empty(I('post.uniqid'))){
+			$temp_array=session(I('post.uniqid'));
+			$uid=get_user_field('u_id');
+			$Dmodel=M();
+			$Dmodel->startTrans();
+			//insert into dr
+			$data['u_id']=$uid;
+			$data['br_name']=$temp_array['dname'];
+			$data['dr_diagnose']=$temp_array['dok'];
+			$data['dr_diagnose_date']=isset($temp_array['date']) ? $temp_array['date'] : 0; 
+
+			$flag=$Dmodel->table('diseaserecords')->data($data)->add();
+
+			if($flag){
+				//insert into drd
+				$data_de['dr_id']=$flag;
+				$data_de['drd_item']='并发症';
+				$data_de['drd_introduce']=isset($temp_array['dename']) ? $temp_array['dename'] : '';
+
+				$flag=$Dmodel->table('dr_detial')->data($data_de)->add();
+				if($flag){
+					$result['flag']=true;
+					$result['msg']='OK';
+
+					$Dmodel->commit();
+				}else{
+					$result['flag']=false;
+					$result['msg']='添加疾病失败';
+					$Dmodel->rollback();
+				}
+
+			}else{
+				$Dmodel->rollback();
+				$result['flag']=false;
+				$result['msg']='添加疾病失败';
+			}
+			$this->ajaxReturn($result);
+
+
+		}else{
+			die();	
+
+		}
+	}
 
 
 
