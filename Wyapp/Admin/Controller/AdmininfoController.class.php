@@ -8,7 +8,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-class AdminifController extends AdminController{
+class AdmininfoController extends AdminController{
 
 
 	public function _initialize(){
@@ -17,8 +17,20 @@ class AdminifController extends AdminController{
 
 	}
 
+	//left 边栏
+	public function left(){
+		$this->display();
+	}
 
-	//登录界面
+
+	//top 边栏
+	public function top(){
+		$this->display();
+	}
+
+
+
+	//管理员信息
 	public function index(){
 
 		$this->display();
@@ -27,11 +39,6 @@ class AdminifController extends AdminController{
 
 
 
-	//login 操作
-	public function login(){
-
-
-	}
 
 
 

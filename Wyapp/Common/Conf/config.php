@@ -6,7 +6,7 @@ return array(
 
 
 		/*加载全局函数库*/
-		'LOAD_EXT_FILE'		=>'gloabl.func.php',
+		'LOAD_EXT_FILE'		=>'gloabl.func',
 
 		/* 数据库设置 */
 		'DB_TYPE'               =>  'mysqli',     // 数据库类型
@@ -35,15 +35,7 @@ return array(
 
 
 
-			/*前台模板替换*/
-			'TMPL_PARSE_STRING'		=> array(
-
-					'__JS__' 	=> __ROOT__.'Public/js/',
-					'__IMG__'	=>__ROOT__.'Public/img/',
-					'__CSS__'	=>__ROOT__.'Public/css/'
-					),
-
-
+		
 
 
 

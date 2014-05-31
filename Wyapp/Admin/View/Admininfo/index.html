@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="__STATIC__css/bootstrap.css"/>
+  <link rel="stylesheet" href="__CSS__manager.css"/>
+  <script type="text/javascript" src="__JS__html5.js" ></script>
+</head>
+<body>
+
+  <div class="container content-main">
+    <!--导航线 start-->
+    <div class="row">
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li >
+            <a href="#">我的面板</a>
+          </li>
+          <li >
+            <a href="#">/</a>
+          </li>
+          <li>
+            <a href="#">管理员</a>
+          </li>
+          <li >
+            <a href="#">/</a>
+          </li>
+          <li >
+            <a href="#">管理员信息</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="hrdivblack"></div>
+    <!--导航线 end-->
+
+    <div class="row ">
+      <!--左边 start-->
+      <div class="col-md-6">
+          <div class="form-horizontal" >
+            <!--一行开始 start-->
+            <div class="form-group">
+              <label for="1" class="col-sm-4 control-label">管理员账号</label>
+              <div class="col-md-8">
+                <p class="input-group">
+                  <span class="input-group-addon">
+                    ：
+                  </span>
+                  <label  class="form-control" id="1" >
+                  <?php echo $result['a_account']; ?>
+                  </label>
+                  </p>
+              </div>
+            </div>
+            <!--一行结束  end-->
+
+             <!--一行开始 start-->
+            <div class="form-group">
+              <label for="1" class="col-sm-4 control-label">管理员姓名</label>
+              <div class="col-md-8">
+                <p class="input-group">
+                  <span class="input-group-addon">
+                   ：
+                  </span>
+                  <label  class="form-control" id="1" >
+                  <?php echo $result['a_name']; ?>
+                  </label>
+                  </p>
+              </div>
+            </div>
+            <!--一行结束  end-->
+            <!--一行开始 start-->
+            <div class="form-group">
+              <label for="1" class="col-sm-4 control-label">管理员邮箱</label>
+              <div class="col-md-8">
+                <p class="input-group">
+                  <span class="input-group-addon">
+                    ：
+                  </span>
+                  <label  class="form-control" id="1" >
+                   <?php echo $result['a_email']; ?>
+                  </label>
+                  </p>
+              </div>
+            </div>
+            <!--一行结束  end--   
+
+             <!--一行开始 start-->
+            <div class="form-group">
+              <label for="1" class="col-sm-4 control-label">管理员电话</label>
+              <div class="col-md-8">
+                <p class="input-group">
+                  <span class="input-group-addon">
+                    ：
+                  </span>
+                  <label  class="form-control" id="1" >
+                    <?php echo $result['a_tel']; ?>
+                  </label>
+                  </p>
+              </div>
+            </div>
+            
+            <!--一行结束  end-->       
+          
+          </div>
+      </div>
+      <!--左边 end-->
+
+      <!--右边 start-->
+       <div class="col-md-6">
+          <div class="form-horizontal" >
+
+            <!--一行开始 start-->
+            <div class="form-group">
+              <label for="1" class="col-sm-4 control-label">上次登录时间</label>
+              <div class="col-md-8">
+                <p class="input-group">
+                  <span class="input-group-addon">
+                    ：
+                  </span>
+                  <label  class="form-control" id="1" >
+                  <?php echo $result['a_lastlogintime']; ?>
+                  </label>
+                  </p>
+              </div>
+            </div>
+            <!--一行结束  end-->
+             <!--一行开始 start-->
+            <div class="form-group">
+              <label for="1" class="col-sm-4 control-label">管理员登录次数</label>
+              <div class="col-md-8">
+                <p class="input-group">
+                  <span class="input-group-addon">
+                    ：
+                  </span>
+                  <label  class="form-control" id="1" >
+                  <?php echo $result['a_counttime']; ?>
+                  </label>
+                  </p>
+              </div>
+            </div>
+            <!--一行结束  end-->
+              <!--一行开始 start-->
+            <div class="form-group">
+              <label for="1" class="col-sm-4 control-label">管理员上次登录ip</label>
+              <div class="col-md-8">
+                <p class="input-group">
+                  <span class="input-group-addon">
+                    ：
+                  </span>
+                  <label  class="form-control" id="1" >
+                 <?php echo $result['a_lastloginip']; ?>
+                  </label>
+                  </p>
+              </div>
+            </div>
+            <!--一行结束  end-->
+               <!--一行开始 start-->
+            <div class="form-group">
+             <label for="1" class="col-sm-4 control-label"></label>
+              <div class="col-md-8">
+                <p class="input-group pull-right">
+                  <!--<span class="input-group-addon">
+                  </span> -->
+                  <label  id="1" >
+                    <a href="__MODULE__/Admin/adminmodify" class="btn btn-primary">修改我的信息</a>
+                  </label>
+                  </p>
+              </div>
+            </div>
+            <!--一行结束  end-->
+          </div>
+      </div>
+      <!--右边 end-->
+    </div>
+  </div>
+  <script type="text/javascript" src="__STATIC__js/jquery-1.11.0.js"></script>
+  <script type="text/javascript" src="__STATIC__js/bootstrap.js" ></script>
+</body>
+</html>

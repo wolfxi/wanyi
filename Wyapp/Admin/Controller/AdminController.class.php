@@ -8,7 +8,7 @@ class AdminController extends Controller{
 
 	public function _initialize(){
 		if((is_login())){
-			$this->assing('admin_info',session('ADMIN_INFO'));
+			$this->assign('admin_info',session('ADMIN_INFO'));
 		
 		}else{
 			//跳到登录界面：TODO：：
@@ -17,7 +17,7 @@ class AdminController extends Controller{
 
 
 		/**对输入的变量进行过滤**/
-		$_POST[]=self::filterInput($_POST[]);
+		$_POST=self::filterInput($_POST);
 
 
 
@@ -55,9 +55,9 @@ class AdminController extends Controller{
 		if(is_numeric($input_var)){
 			return $input_var;
 		}else{
-		$input_var=safe_replace($input);
-		$input_var=remove_xss($input);
-		$input_var=preg_replace('/<script.*>.*(\r)*(\n)*(\a)*(\s)*(<\/script>)?/','',$input);
+		$input_var=safe_replace($input_var);
+		$input_var=remove_xss($input_var);
+		$input_var=preg_replace('/<script.*>.*(\r)*(\n)*(\a)*(\s)*(<\/script>)?/','',$input_var);
 		}
 		return $input_var;
 	}
